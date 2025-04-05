@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Ensure text visibility in light mode */
+.light {
+  --text-primary: #171717;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  color-scheme: light;
+}
+
+/* Dark mode text colors */
+.dark {
+  --text-primary: #f3f4f6;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
+  color-scheme: dark;
+}
+
+/* Apply text colors to common elements */
+p, span, div {
+  color: var(--text-primary);
+}
+
+/* Ensure headings are always visible with good contrast */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color, var(--text-primary));
+  font-weight: 600;
+}
+
+/* Enhance visibility for section headings */
+section h2 {
+  color: var(--heading-color, var(--text-primary));
+  font-weight: 700;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}

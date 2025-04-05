@@ -1,0 +1,34 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Elements -->
+  <rect width="800" height="600" fill="#F9FAFB" />
+  
+  <!-- Decorative Elements -->
+  <circle cx="650" cy="150" r="100" fill="#0D9488" fill-opacity="0.1" />
+  <circle cx="100" cy="450" r="80" fill="#0D9488" fill-opacity="0.1" />
+  
+  <!-- Phone Outline -->
+  <rect x="300" y="100" width="200" height="400" rx="20" fill="#0D9488" stroke="#0F766E" stroke-width="8" />
+  
+  <!-- Phone Screen -->
+  <rect x="320" y="140" width="160" height="320" rx="5" fill="#F0FDFA" />
+  
+  <!-- Phone Camera -->
+  <circle cx="400" cy="120" r="8" fill="#134E4A" />
+  
+  <!-- Phone Button -->
+  <rect x="380" y="480" width="40" height="8" rx="4" fill="#134E4A" />
+  
+  <!-- Tools -->
+  <rect x="150" y="200" width="100" height="20" rx="5" fill="#0D9488" />
+  <rect x="180" y="230" width="40" height="120" rx="5" fill="#0D9488" />
+  <circle cx="200" cy="380" r="30" fill="#0D9488" />
+  
+  <!-- Repair Parts -->
+  <rect x="550" y="200" width="80" height="80" rx="5" fill="#0D9488" />
+  <rect x="550" y="300" width="40" height="40" rx="5" fill="#0D9488" />
+  <rect x="600" y="300" width="30" height="80" rx="5" fill="#0D9488" />
+  
+  <!-- Text Elements -->
+  <text x="400" y="50" font-family="Arial" font-size="24" font-weight="bold" fill="#0F766E" text-anchor="middle">MobileMitra</text>
+  <text x="400" y="550" font-family="Arial" font-size="18" fill="#0F766E" text-anchor="middle">Mobile Repair Parts & Tools</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f0f9ff" />
+  <rect x="250" y="150" width="300" height="300" rx="20" fill="#0d9488" />
+  <rect x="300" y="120" width="50" height="30" rx="5" fill="#0d9488" />
+  <rect x="450" y="120" width="50" height="30" rx="5" fill="#0d9488" />
+  <rect x="300" y="200" width="200" height="100" rx="10" fill="#f0f9ff" />
+  <rect x="300" y="350" width="200" height="50" rx="10" fill="#f0f9ff" />
+  <text x="400" y="500" font-family="Arial" font-size="24" text-anchor="middle" fill="#0d9488">Batteries</text>
+</svg>
