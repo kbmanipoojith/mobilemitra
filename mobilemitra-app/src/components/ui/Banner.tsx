@@ -25,15 +25,16 @@ export default function Banner({
   position = 'left',
 }: BannerProps) {
   return (
-    <div className={`${backgroundColor || 'bg-blue-600'} rounded-lg overflow-hidden shadow-md`}>
+    <div className={`${backgroundColor || 'bg-[#a83250]'} rounded-lg overflow-hidden shadow-md relative`}>
+      <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
       <div className="relative p-6 md:p-8 flex flex-col md:flex-row items-center">
         <div className={`${position === 'right' ? 'md:order-2 md:text-right' : ''} flex-1 mb-6 md:mb-0`}>
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{title}</h3>
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-2 animate-glow">{title}</h3>
           <p className="text-white text-opacity-90 mb-4">{description}</p>
           {buttonText && buttonLink && (
             <Link 
               href={buttonLink} 
-              className="inline-block bg-white text-blue-600 dark:bg-gray-100 px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition-all duration-300"
+              className="inline-block bg-white text-[#a83250] dark:bg-gray-100 px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-glow"
             >
               {buttonText}
             </Link>

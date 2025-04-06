@@ -7,16 +7,32 @@ import Link from 'next/link';
 export default function SellerDashboard() {
   const router = useRouter();
 
-  // TODO: Replace with actual auth check
+  // Authentication check using our test credentials
   useEffect(() => {
-    const isAuthenticated = false; // Replace with actual auth check
-    const isSeller = false; // Replace with actual seller check
+    const checkAuth = async () => {
+      try {
+        // Import dynamically to avoid SSR issues
+        const { users } = await import('@/lib/mockData/users');
+        
+        // Check if user is logged in (this would normally use a session/cookie)
+        // For demo purposes, we'll assume the user is logged in with test credentials
+        const testUser = users.find(u => u.email === 'test@gmail.com' && u.password === 'test' && u.isSeller);
+        
+        const isAuthenticated = !!testUser;
+        const isSeller = testUser?.isSeller || false;
+        
+        if (!isAuthenticated) {
+          router.push('/login?redirect=/seller/dashboard');
+        } else if (!isSeller) {
+          router.push('/become-seller');
+        }
+      } catch (error) {
+        console.error('Authentication check failed:', error);
+        router.push('/login?redirect=/seller/dashboard');
+      }
+    };
     
-    if (!isAuthenticated) {
-      router.push('/login?redirect=/seller/dashboard');
-    } else if (!isSeller) {
-      router.push('/become-seller');
-    }
+    checkAuth();
   }, [router]);
 
   return (
@@ -66,4 +82,4 @@ export default function SellerDashboard() {
       </div>
     </div>
   );
-} 
+}

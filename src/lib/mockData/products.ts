@@ -1,80 +1,116 @@
+import { Brand, Model } from './brands';
+import { Category, Subcategory } from './categories';
+import { generateProducts } from './generateProducts';
+
 export interface Product {
   id: string;
   name: string;
+  slug: string;
   description: string;
   price: number;
-  category: string;
-  image: string;
   stock: number;
+  image: string;
   rating: number;
   reviews: number;
+  discount?: number;
+  brand: Brand;
+  model: Model;
+  category: Category;
+  subcategory?: Subcategory;
+  compatibility: string[];
+  specifications: {
+    [key: string]: string | number | boolean;
+  };
 }
 
-export const products: Product[] = [
-  {
-    id: '1',
-    name: 'iPhone 13 Pro Battery',
-    description: 'Original replacement battery for iPhone 13 Pro with 3095mAh capacity.',
-    price: 2999,
-    category: 'Batteries',
-    image: '/images/products/iphone-13-pro-battery.jpg',
-    stock: 10,
-    rating: 4.5,
-    reviews: 120,
-  },
-  {
-    id: '2',
-    name: 'Samsung Galaxy S21 Screen',
-    description: 'Original AMOLED display assembly for Samsung Galaxy S21.',
-    price: 8999,
-    category: 'Screens',
-    image: '/images/products/samsung-s21-screen.jpg',
-    stock: 5,
-    rating: 4.2,
-    reviews: 85,
-  },
-  {
-    id: '3',
-    name: 'iPhone 12 Charging Port',
-    description: 'Original charging port flex cable for iPhone 12 series.',
-    price: 1499,
-    category: 'Charging Ports',
-    image: '/images/products/iphone-12-charging-port.jpg',
-    stock: 15,
-    rating: 4.0,
-    reviews: 65,
-  },
-  {
-    id: '4',
-    name: 'OnePlus 9 Pro Back Glass',
-    description: 'Original back glass panel for OnePlus 9 Pro in matte black.',
-    price: 2499,
-    category: 'Back Glass',
-    image: '/images/products/oneplus-9-pro-back-glass.jpg',
-    stock: 8,
-    rating: 4.3,
-    reviews: 45,
-  },
-  {
-    id: '5',
-    name: 'Xiaomi Mi 11 Camera Module',
-    description: 'Original camera module for Xiaomi Mi 11 with 108MP main sensor.',
-    price: 4999,
-    category: 'Cameras',
-    image: '/images/products/xiaomi-mi-11-camera.jpg',
-    stock: 3,
-    rating: 4.7,
-    reviews: 30,
-  },
-  {
-    id: '6',
-    name: 'iPhone 13 Pro Max Logic Board',
-    description: 'Original logic board for iPhone 13 Pro Max with A15 Bionic chip.',
-    price: 24999,
-    category: 'Logic Boards',
-    image: '/images/products/iphone-13-pro-max-logic-board.jpg',
-    stock: 2,
-    rating: 4.8,
-    reviews: 15,
-  },
-]; 
+// Helper function to generate product ID
+export const generateProductId = (brand: string, model: string, category: string): string => {
+  return `${brand.toLowerCase()}-${model.toLowerCase().replace(/ /g, '-')}-${category.toLowerCase().replace(/ /g, '-')}`;
+};
+
+// Helper functions to get filtered products
+export const getProductsByBrand = (brandId: string): Product[] => {
+  return products.filter(product => product.brand.id === brandId);
+};
+
+export const getProductsByModel = (brandId: string, modelId: string): Product[] => {
+  return products.filter(
+    product => product.brand.id === brandId && product.model.id === modelId
+  );
+};
+
+export const getProductsByCategory = (categoryId: string): Product[] => {
+  return products.filter(product => product.category.id === categoryId);
+};
+
+export const getProductsBySubcategory = (categoryId: string, subcategoryId: string): Product[] => {
+  return products.filter(
+    product => 
+      product.category.id === categoryId && 
+      product.subcategory?.id === subcategoryId
+  );
+};
+
+// Helper function to search products
+export const searchProducts = (query: string): Product[] => {
+  const searchTerm = query.toLowerCase();
+  return products.filter(product => 
+    product.name.toLowerCase().includes(searchTerm) ||
+    product.description.toLowerCase().includes(searchTerm) ||
+    product.brand.name.toLowerCase().includes(searchTerm) ||
+    product.model.name.toLowerCase().includes(searchTerm) ||
+    product.category.name.toLowerCase().includes(searchTerm)
+  );
+};
+
+// Get all unique brands
+export const getAllBrands = (): Brand[] => {
+  const uniqueBrands = new Set<string>();
+  return products
+    .filter(product => {
+      if (!uniqueBrands.has(product.brand.id)) {
+        uniqueBrands.add(product.brand.id);
+        return true;
+      }
+      return false;
+    })
+    .map(product => product.brand);
+};
+
+// Get all models for a brand
+export const getModelsByBrand = (brandId: string): Model[] => {
+  const uniqueModels = new Set<string>();
+  return products
+    .filter(product => product.brand.id === brandId)
+    .filter(product => {
+      if (!uniqueModels.has(product.model.id)) {
+        uniqueModels.add(product.model.id);
+        return true;
+      }
+      return false;
+    })
+    .map(product => product.model);
+};
+
+// Get all categories
+export const getAllCategories = (): Category[] => {
+  const uniqueCategories = new Set<string>();
+  return products
+    .filter(product => {
+      if (!uniqueCategories.has(product.category.id)) {
+        uniqueCategories.add(product.category.id);
+        return true;
+      }
+      return false;
+    })
+    .map(product => product.category);
+};
+
+// Get all subcategories for a category
+export const getSubcategoriesByCategory = (categoryId: string): Subcategory[] => {
+  const category = products.find(product => product.category.id === categoryId)?.category;
+  return category?.subcategories || [];
+};
+
+// Generate and export the products array
+export const products: Product[] = generateProducts(); 

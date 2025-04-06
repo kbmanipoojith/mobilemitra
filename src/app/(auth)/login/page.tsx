@@ -19,14 +19,22 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      // TODO: Implement actual login logic with backend
-      console.log('Login attempt:', formData);
-      
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // For demo, just redirect to products page
-      router.push('/products');
+      // Import dynamically to avoid SSR issues
+      const { authenticateUser, getRedirectPath } = await import('@/lib/utils/authUtils');
+      
+      // Authenticate user
+      const authResult = authenticateUser(formData.email, formData.password);
+      
+      if (authResult.success && authResult.user) {
+        // Redirect based on user role
+        const redirectPath = getRedirectPath(authResult.user);
+        router.push(redirectPath);
+      } else {
+        setError(authResult.error || 'Authentication failed');
+      }
     } catch (err) {
       setError('Invalid email or password');
     } finally {
@@ -136,4 +144,4 @@ export default function LoginPage() {
       </div>
     </div>
   );
-} 
+}

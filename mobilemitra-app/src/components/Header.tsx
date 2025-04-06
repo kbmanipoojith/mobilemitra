@@ -5,8 +5,32 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
+const MOBILE_BRANDS = [
+  'SAMSUNG', 'vivo', 'Xiaomi', 'Apple', 'realme', 'OPPO', 'MOTOROLA', 'ONEPLUS', 'NOKIA', 'LG',
+  'HUAWEI', 'Infinix', 'Micromax', 'Lenovo', 'TECNO Mobile', 'HTC', 'LAVA', 'INTEX', 'Karbonn',
+  'ZTE', 'ASUS', 'HONOR', 'Alcatel', 'BLU Smartphones', 'SPICE', 'Swing Telecom', 'SONY', 'Celkon',
+  'Swipe', 'Google', 'iBall', 'itel', 'Videocon', 'Panasonic', 'GIONEE', 'Microsoft', 'Acer',
+  'Cubot', 'WIKO', 'Blackview', 'uleFone', 'MEIZU', 'DOOGEE', 'ZEN', 'XOLO', 'BlackBerry',
+  'Allview', 'IKALL', 'Coolpad', 'MAXX', 'UMIDIGI', 'SIEMENS', 'ZOPO', 'rage', 'SANSUI',
+  'Nothing', 'fly', 'OUKITEL', 'HITECH', 'TCL'
+];
+
+const PRODUCT_CATEGORIES = [
+  'Batteries',
+  'Screens',
+  'Charging Ports',
+  'Back Panels',
+  'Speakers',
+  'Cameras',
+  'Motherboards',
+  'Power Buttons',
+  'Volume Buttons'
+];
+
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isModelsOpen, setIsModelsOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
   const pathname = usePathname();
   const isLandingPage = pathname === '/';
 
@@ -35,14 +59,68 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
               <div className="relative group">
-                <button className="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">
-                  Models
-                </button>
+                <div 
+                  className="flex items-center space-x-1 cursor-pointer"
+                  onMouseEnter={() => setIsModelsOpen(true)}
+                >
+                  <button className="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 inline-flex items-center">
+                    Models
+                  </button>
+                  <svg className="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </div>
+                {isModelsOpen && (
+                  <div 
+                    className="absolute left-0 top-full mt-0 pt-2 w-64"
+                    onMouseEnter={() => setIsModelsOpen(true)}
+                    onMouseLeave={() => setIsModelsOpen(false)}
+                  >
+                    <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg py-2 max-h-96 overflow-y-auto">
+                      {MOBILE_BRANDS.map((brand, index) => (
+                        <Link
+                          key={index}
+                          href={`/models/${brand.toLowerCase().replace(/ /g, '-')}`}
+                          className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          {brand}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="relative group">
-                <button className="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">
-                  Products
-                </button>
+                <div 
+                  className="flex items-center space-x-1 cursor-pointer"
+                  onMouseEnter={() => setIsProductsOpen(true)}
+                >
+                  <button className="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 inline-flex items-center">
+                    Products
+                  </button>
+                  <svg className="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </div>
+                {isProductsOpen && (
+                  <div 
+                    className="absolute left-0 top-full mt-0 pt-2 w-64"
+                    onMouseEnter={() => setIsProductsOpen(true)}
+                    onMouseLeave={() => setIsProductsOpen(false)}
+                  >
+                    <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg py-2">
+                      {PRODUCT_CATEGORIES.map((category, index) => (
+                        <Link
+                          key={index}
+                          href={`/products/${category.toLowerCase().replace(/ /g, '-')}`}
+                          className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          {category}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
               <Link
                 href="/repair-guides"
@@ -129,4 +207,4 @@ export default function Header() {
       )}
     </>
   );
-} 
+}

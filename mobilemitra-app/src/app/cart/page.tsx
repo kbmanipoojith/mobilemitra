@@ -1,47 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
-
-// TODO: Replace with actual cart management
-const initialCart: CartItem[] = [
-  // Example cart item structure
-  // {
-  //   id: 1,
-  //   name: 'iPhone 12 Battery',
-  //   price: 1999,
-  //   quantity: 1,
-  //   image: '/images/products/iphone-12-battery.jpg'
-  // }
-];
+import { useRouter } from 'next/navigation';
+import { useCart } from '@/lib/context/CartContext';
+import { useAuth } from '@/lib/context/AuthContext';
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialCart);
-
-  const updateQuantity = (itemId: number, newQuantity: number) => {
-    setCartItems(items =>
-      items.map(item =>
-        item.id === itemId
-          ? { ...item, quantity: Math.max(1, newQuantity) }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (itemId: number) => {
-    setCartItems(items => items.filter(item => item.id !== itemId));
-  };
-
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const router = useRouter();
+  const { cartItems, removeFromCart, updateQuantity, subtotal } = useCart();
+  const { isAuthenticated } = useAuth();
+  
   const shipping = subtotal > 999 ? 0 : 99;
   const total = subtotal + shipping;
 
@@ -99,7 +68,7 @@ export default function CartPage() {
                 </button>
               </div>
               <button
-                onClick={() => removeItem(item.id)}
+                onClick={() => removeFromCart(item.id)}
                 className="text-red-600 hover:text-red-700"
               >
                 Remove
@@ -128,8 +97,14 @@ export default function CartPage() {
             </div>
           </div>
           <button 
+            onClick={() => {
+              if (!isAuthenticated) {
+                router.push(`/login?redirect=${encodeURIComponent('/checkout')}`);
+              } else {
+                router.push('/checkout');
+              }
+            }}
             className="w-full bg-teal-600 text-white py-3 rounded-md hover:bg-teal-700 transition-colors"
-            onClick={() => {/* TODO: Implement checkout */}}
           >
             Proceed to Checkout
           </button>
@@ -142,4 +117,4 @@ export default function CartPage() {
       </div>
     </div>
   );
-} 
+}

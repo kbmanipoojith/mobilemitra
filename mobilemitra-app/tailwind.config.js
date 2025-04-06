@@ -14,7 +14,8 @@ module.exports = {
           card: '#1e1e1e',
           text: '#f3f4f6',
           border: '#2e2e2e'
-        }
+        },
+        promo: '#a83250'
       }
     },
   },

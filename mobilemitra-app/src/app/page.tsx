@@ -5,7 +5,6 @@ import ProductCard from "@/components/product/ProductCard";
 import CategoryCard from "@/components/product/CategoryCard";
 import { products } from "@/lib/mockData/products";
 import { categories } from "@/lib/mockData/categories";
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
   
   return (
     <div className="min-h-screen flex flex-col dark:bg-gray-900">
-      <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-teal-500 to-teal-700 text-white py-16">
