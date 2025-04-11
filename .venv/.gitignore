@@ -1,0 +1,15 @@
+# Ignore Python cache and environment files
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+
+# Ignore environment files
+.env
+
+# Ignore virtualenv folder (if it's named 'venv')
+venv/
+
+# Ignore static/media (if you're collecting them externally)
+static/
+media/
