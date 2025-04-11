@@ -1,47 +1,108 @@
 # MobileMitra - Mobile Repair Parts & Tools E-commerce Platform
 
-MobileMitra is a modern e-commerce platform built with Next.js and Tailwind CSS, focused on providing mobile repair parts, tools, and repair guides for technicians and enthusiasts in India. The platform aims to streamline the process of finding and purchasing quality repair parts while providing comprehensive repair guides.
+> **Backend Development Credits**: The entire backend infrastructure of this project was developed by [@NavyaGujjeti](https://github.com/NavyaGujjeti). Her contribution includes the complete Django backend implementation, RESTful API development, database design, and all backend-related functionalities. We extend our sincere gratitude for her exceptional work and dedication to this project.
 
-## Overview
+## 🚀 Project Overview
 
-MobileMitra serves as a bridge between repair professionals and quality parts suppliers. The platform features a user-friendly interface, comprehensive product catalog, and detailed repair guides to support both professional technicians and DIY enthusiasts.
+MobileMitra is a comprehensive e-commerce platform specifically designed for the mobile repair industry in India. It serves as a one-stop solution for:
+- Mobile repair technicians
+- DIY repair enthusiasts
+- Parts suppliers and distributors
+- Repair service providers
 
-## Features
+The platform aims to revolutionize the mobile repair industry by providing:
+- Easy access to genuine repair parts
+- Comprehensive repair guides
+- Quality tools and equipment
+- Professional networking opportunities
 
-- 🛍️ Product Catalog with Categories
-- 🔍 Search and Filter Products
-- 🛒 Shopping Cart with Checkout
-- 👤 User Authentication
-- 👨‍💼 Seller Dashboard
-- 📚 Repair Guides
-- 📱 Fully Responsive Design
+## ✨ Key Features
 
-## Tech Stack
+### For Customers
+- 🛍️ **Product Catalog**
+  - Detailed product listings with specifications
+  - High-quality product images
+  - Compatibility information
+  - Price comparison
+  - Stock availability
 
-- **Frontend:**
-  - Next.js 14 (App Router)
-  - React 18
-  - TypeScript
-  - Tailwind CSS
-  - Local Storage for Cart Management
+- 🔍 **Advanced Search & Filtering**
+  - Search by device model
+  - Filter by price range
+  - Sort by popularity/price
+  - Category-based browsing
+  - Brand-specific filtering
 
-- **Backend Integration (Future):**
-  - Django
-  - MySQL
-  - RESTful API
+- 🛒 **Shopping Experience**
+  - Secure checkout process
+  - Multiple payment options
+  - Order tracking
+  - Wishlist functionality
+  - Review and rating system
 
-## Prerequisites
+### For Sellers
+- 👨‍💼 **Seller Dashboard**
+  - Inventory management
+  - Order processing
+  - Sales analytics
+  - Customer management
+  - Performance metrics
 
+### For Technicians
+- 📚 **Repair Guides**
+  - Step-by-step tutorials
+  - Video demonstrations
+  - Troubleshooting guides
+  - Best practices
+  - Community forums
+
+## 🛠️ Technical Stack
+
+### Frontend
+- **Framework**: Next.js 14 (App Router)
+- **UI Library**: React 18
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: React Context API
+- **Form Handling**: React Hook Form
+- **Validation**: Zod
+- **UI Components**: Shadcn/ui
+- **Icons**: Lucide React
+
+### Backend (Developed by [@NavyaGujjeti](https://github.com/NavyaGujjeti))
+- **Framework**: Django
+- **Database**: MySQL
+- **API**: RESTful API
+- **Authentication**: JWT
+- **File Storage**: AWS S3
+- **Caching**: Redis
+- **Task Queue**: Celery
+- **Email Service**: SendGrid
+- **Payment Gateway**: Razorpay
+
+## 📋 Prerequisites
+
+### Development Environment
 - Node.js 18.x or higher
 - npm 9.x or higher
+- Python 3.11 or higher
+- MySQL 8.0 or higher
 - Git
-- A code editor (VS Code recommended)
+- VS Code (recommended)
 
-## Getting Started
+### Required Tools
+- Git
+- VS Code (recommended)
+- Postman (for API testing)
+- MySQL Workbench
+- Redis (for caching)
 
+## 🚀 Getting Started
+
+### Frontend Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/mobilemitra.git
+   git clone https://github.com/kbmanipoojith/mobilemitra.git
    cd mobilemitra
    ```
 
@@ -61,17 +122,89 @@ MobileMitra serves as a bridge between repair professionals and quality parts su
    npm run dev
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Backend Setup
+1. Navigate to backend directory:
+   ```bash
+   cd backend
+   ```
 
-## Development
+2. Create and activate virtual environment:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
 
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` with your configuration
+
+5. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
+
+6. Start the development server:
+   ```bash
+   python manage.py runserver
+   ```
+
+## 🏗️ Project Structure
+
+```
+mobilemitra/
+├── frontend/
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── (auth)/
+│   │   │   ├── cart/
+│   │   │   ├── guides/
+│   │   │   ├── products/
+│   │   │   └── seller/
+│   │   ├── components/
+│   │   ├── lib/
+│   │   └── types/
+│   └── public/
+│
+├── backend/
+│   ├── core/
+│   │   ├── settings/
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── apps/
+│   │   ├── accounts/
+│   │   ├── products/
+│   │   ├── orders/
+│   │   └── guides/
+│   ├── utils/
+│   └── requirements.txt
+│
+└── docs/
+```
+
+## 🔧 Development Workflow
+
+### Frontend Development
+- Run development server: `npm run dev`
 - Run tests: `npm test`
 - Run linting: `npm run lint`
 - Build for production: `npm run build`
-- Start production server: `npm start`
 
-## Deployment
+### Backend Development
+- Run development server: `python manage.py runserver`
+- Run tests: `python manage.py test`
+- Create migrations: `python manage.py makemigrations`
+- Apply migrations: `python manage.py migrate`
 
+## 📦 Deployment
+
+### Frontend Deployment
 1. Build the application:
    ```bash
    npm run build
@@ -82,50 +215,41 @@ MobileMitra serves as a bridge between repair professionals and quality parts su
    npm run start
    ```
 
-3. Deploy to your preferred hosting platform (Vercel recommended):
+3. Deploy to Vercel:
    ```bash
    vercel deploy
    ```
 
-## Project Structure
+### Backend Deployment
+1. Set up production environment variables
+2. Install production dependencies
+3. Run migrations
+4. Configure web server (Nginx)
+5. Set up SSL certificates
+6. Configure domain and DNS
 
-```
-mobilemitra/
-├── src/
-│   ├── app/
-│   │   ├── (auth)/
-│   │   │   ├── login/
-│   │   │   └── signup/
-│   │   ├── cart/
-│   │   ├── guides/
-│   │   ├── products/
-│   │   ├── seller/
-│   │   │   └── dashboard/
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   ├── components/
-│   │   ├── layout/
-│   │   ├── product/
-│   │   ├── auth/
-│   │   ├── seller/
-│   │   └── cart/
-│   ├── lib/
-│   │   └── mockData/
-│   └── types/
-├── public/
-└── package.json
-```
+## 🔐 API Documentation
 
-## API Routes (Future Integration)
+### Authentication Endpoints
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
+- `POST /api/auth/refresh` - Refresh token
 
-- `GET /api/products` - Fetch all products
-- `POST /api/signup` - Register a user
-- `POST /api/login` - Authenticate a user
-- `POST /api/upload` - Submit seller product data
-- `POST /api/cart` - Update cart
-- `GET /api/guides` - Fetch repair guides
+### Product Endpoints
+- `GET /api/products` - List all products
+- `GET /api/products/:id` - Get product details
+- `POST /api/products` - Create new product
+- `PUT /api/products/:id` - Update product
+- `DELETE /api/products/:id` - Delete product
 
-## Contributing
+### Order Endpoints
+- `GET /api/orders` - List user orders
+- `POST /api/orders` - Create new order
+- `GET /api/orders/:id` - Get order details
+- `PUT /api/orders/:id` - Update order status
+
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -133,12 +257,20 @@ mobilemitra/
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [React Documentation](https://react.dev)
+- [Django Documentation](https://docs.djangoproject.com)
+- [MySQL Documentation](https://dev.mysql.com/doc)
+
+## 📞 Contact
+
+For any queries or support, please contact:
+- Frontend Team: [@kbmanipoojith](https://github.com/kbmanipoojith)
+- Backend Team: [@NavyaGujjeti](https://github.com/NavyaGujjeti) 
