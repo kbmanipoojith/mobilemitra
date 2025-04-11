@@ -1,0 +1,26 @@
+<svg width="800" height="300" viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="300" fill="#0D9488" />
+  
+  <!-- Decorative Elements -->
+  <circle cx="700" cy="50" r="40" fill="#14B8A6" fill-opacity="0.3" />
+  <circle cx="100" cy="250" r="60" fill="#14B8A6" fill-opacity="0.3" />
+  
+  <!-- Tools Illustration -->
+  <rect x="100" y="100" width="120" height="20" rx="5" fill="white" />
+  <rect x="140" y="80" width="40" height="100" rx="5" fill="white" />
+  <circle cx="160" cy="200" r="20" fill="white" />
+  
+  <!-- Screwdriver -->
+  <rect x="200" y="120" width="100" height="15" rx="5" fill="white" />
+  <rect x="290" y="110" width="30" height="35" rx="5" fill="white" />
+  
+  <!-- Phone Parts -->
+  <rect x="500" y="100" width="80" height="120" rx="10" fill="white" />
+  <rect x="520" y="130" width="40" height="60" rx="5" fill="#0D9488" />
+  <circle cx="540" cy="110" r="5" fill="#0D9488" />
+  
+  <!-- Text Elements -->
+  <text x="400" y="70" font-family="Arial" font-size="28" font-weight="bold" fill="white" text-anchor="middle">Professional Repair Tools</text>
+  <text x="400" y="230" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Get 15% off on all professional repair toolkits this week!</text>
+</svg>
