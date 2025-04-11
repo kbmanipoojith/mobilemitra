@@ -1,6 +1,6 @@
 # MobileMitra - Mobile Repair Parts & Tools E-commerce Platform
 
-> **Backend Development Credits**: The entire backend infrastructure of this project was developed by [@NavyaGujjeti](https://github.com/NavyaGujjeti). Her contribution includes the complete Django backend implementation, RESTful API development, database design, and all backend-related functionalities. We extend our sincere gratitude for her exceptional work and dedication to this project.
+> **Backend Development Credits:** The entire backend infrastructure of this project was developed by **@NavyaGujjeti** (https://github.com/NavyaGujjeti). Her contribution includes the complete Django backend implementation, RESTful API development, database design, and all backend-related functionalities. We extend our sincere gratitude for her exceptional work and dedication to this project.
 
 ## 🚀 Project Overview
 
